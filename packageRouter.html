@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Package Delivery Router</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Package Delivery Router</h1>
+							<span class="image main"><img src="images/warehouse_crop.jpg"></span>
+							<h3>Overview</h3>
+							<p>This project routes vehicle delivery paths based on a loadout of packages. This was accomplished in several stages.</p>
+							<h3>Mapping the Data</h3>
+							<p>A real world map of a town was provided for the project.</p>
+							<span class="image"><img src="images/map_stage_1.PNG"></span>
+							<p>The above map is around my current residence not the one used for the actual project; however, the process is still the same.
+								Delivery hubs were identified and an adjacency map was created.</p>
+							<div>
+								<span class="image"><img src="images/map_stage_2.PNG"></span>
+								<span class="image"><img src="images/map_stage_3.PNG"></span>
+							</div>
+							<p>Each adjacency line was given a weight based on distance. With a weighted adjancey map, dijkstra's shortest path could now be executed.</p>
+							<h3>Dijkstra's Shortest Path</h3>
+							<p>Each truck will have a number of packages loaded onto it. Each package has a destination hub. First the algorithm will search to determine the shortest path for an individual package.
+							The router looks at each adjacent hub and checks to see if that matches the destination hub. If it isn't, it will record distance of that path. From this adjacent hub, it then looks further out at hubs adjacent to this new hub. Each time a hub is checked, the value is added to the path that is "traveled" to get a total distance. When the package is found, the total distance is recorded as a possible route. After all the hubs have been visited, the algorithm has scanned the entire map and reviews the possible routes. The shortest route is then selected. This route is then reversed to create a path the truck must travel down to deliver the package. This is then recorded as the distance to deliver this package. This process is repeated for all packages loaded onto the truck. After all packages have their shortest routes determined, the algorithm selects the package with the shortest distance overall. The path to this delivery hub is recorded. The delivery hub is set as the new destination. The delivered package is removed from a queue of packages to be delivered and the process is repeated until all packages are delivered from the truck.
+							</p>
+
+							<!-- Back Button -->
+							<form action="index.html">
+								<input type="submit" value="Back" />
+							</form>
+					</div>
+			</div>
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
